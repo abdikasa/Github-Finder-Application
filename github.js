@@ -2,7 +2,7 @@
 class Github {
     constructor() {
         this.client_id = '482239bd3c8a3292fc9e';
-        this.client_secret = '147299340b006fbf4bebf463a03c81a3fb603621';
+        this.client_secret = '003ac38c7bbbc68e993eff1041fc8ef3f88c27b1';
     }
     //Must add client id and client secret to the link inside the get method.
     async get(user) {
@@ -11,6 +11,14 @@ class Github {
         const profileData = await profileResponse.json();
 
         //return object
+        return {
+            profileData
+        }
+    }
+
+    async getRepos(user) {
+        const profileResponse = await fetch(`https://api.github.com/users/${user}/repos`);
+        const profileData = await profileResponse.json();
         return {
             profileData
         }
