@@ -32,19 +32,29 @@ class UI {
     `
     }
 
-    addRepos(array) {
-        let list = document.querySelector('.repos');
+    showRepos(repos) {
+        let reposDOM = document.querySelector('.repos');
         let output = '';
 
-        array.forEach((obj) => {
-            output+=`<li>Name: ${obj.name} --- <a href="${obj.url}" target="_blank">Got to repo</a> --- Language: ${obj.lang}</li>`
+        repos.forEach((repo) => {
+        output += `<div class="card card-body mb-2"> 
+                    <div class="row">
+                    <div class="col-md-6">
+                        <a href="${repo.html_url}" target="_blank">${repo.name}</a>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="badge badge-primary">Forks: ${repo.forms_count}</span>
+                        <span class="badge badge-secondary">:Stars ${repo.stargazers_count}</span>
+                        <span class="badge badge-success">Watchers: ${repo.watchers_count}</span>
+                    </div>
+                    </div>
+                    </div>
+                 `
         })
-        list.innerHTML = output;     
 
+        //loop ends, append to dom
+        reposDOM.innerHTML = output;
     }
-
-
-
 
     //Clear the profile section.
     clearProfile() {
@@ -65,7 +75,7 @@ class UI {
         //This line reads like english
         //parent ==> div ===> alertAfter.
 
-        
+
         // setTimeout(() => {
         //     this.clearAlerts();
         // }, 3000)
@@ -74,9 +84,9 @@ class UI {
     clearAlerts() {
         const div = document.querySelector('.alert');
         //if div exists, delete it.
-        if(div){
+        if (div) {
             div.remove();
-        } 
+        }
     }
 
 

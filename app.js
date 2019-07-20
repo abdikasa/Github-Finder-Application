@@ -16,23 +16,45 @@ findUser.addEventListener("keyup", (e) => {
                     //Show error
                     interface.showAlert(data.profileData.message, 'alert alert-danger')
                 } else {
-                    //Show user's profile.
+                    //1. Clear alerts
                     interface.clearAlerts();
-                    interface.showProfile(data.profileData);
-                    github.getRepos(user)
-                        .then(data => {
-                            let dataArray = data.profileData;
 
-                            let newArray = dataArray.map((item) => {
-                                let output = {};
-                                output.url = item.html_url;
-                                output.name = item.name;
-                                output.lang = item.language;
-                                return output;
-                            })
-                            console.log(newArray);
-                            interface.addRepos(newArray);
-                        });
+                    //2. Show profile of github user
+                    interface.showProfile(data.profileData);
+
+                    //3.Show repos
+                    interface.showRepos(data.repoData);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    // github.getRepos(user)
+                    //     .then(data => {
+                    //         let dataArray = data.profileData;
+
+                    //         let newArray = dataArray.map((item) => {
+                    //             let output = {};
+                    //             output.url = item.html_url;
+                    //             output.name = item.name;
+                    //             output.lang = item.language;
+                    //             return output;
+                    //         })
+                    //         console.log(newArray);
+                    //         interface.addRepos(newArray);
+                    //     });
                 }
             })
     } else {
